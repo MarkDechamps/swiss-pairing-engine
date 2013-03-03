@@ -71,7 +71,7 @@ public class TestTournament {
 			Round round = tournament.pairNextRound();
 			assertEquals("No pairings found in round " + round.roundNumber, 3, round.pairings.size());
 			assertTrue("No bye should happen in a 6 player tournament!:" + round.bye, round.bye == null);
-			// assertRoundInPairingsWhereStrongestPlayerWinsNoBye(round);
+			assertRoundInPairingsWhereStrongestPlayerWinsNoBye(round);
 			letBestPlayerWin(round);
 		}
 	}
@@ -84,6 +84,14 @@ public class TestTournament {
 	private void assertRoundInPairingsWhereStrongestPlayerWinsNoBye(Round round) {
 		List<Pairing> pairings = round.pairings;
 
+		/**
+		 * The lines commented out should be brought to work. This is still a
+		 * bug somewhere in the algorithm. The expected result comes from a
+		 * different pairing program and it makes sense. In the fourth round the
+		 * pairing let a player with 1 point play against a player with 4 points
+		 * so I guess priorities are mixed up somewhere (preferred color above
+		 * points) This should be debugged
+		 */
 		switch (round.roundNumber) {
 		case 0:
 			assertPairingsContainsePairingWithPlayers("P6", "P3", pairings);
@@ -218,7 +226,7 @@ public class TestTournament {
 				break;
 			}
 		}
-		assertTrue(foundPairing);
+		assertTrue("Pairing expected and not found:" + name1 + " vs " + name2, foundPairing);
 
 	}
 
@@ -237,8 +245,8 @@ public class TestTournament {
 			assertEquals(2, round.pairings.size());
 			assertTrue("Bye should happen in a 5 player tournament!:" + round.bye, round.bye != null);
 			// assertRoundInPairingsWhereStrongestPlayerWinsWithBye(round);
-			// drawEverythingIn(round);
-			letBestPlayerWin(round);
+			drawEverythingIn(round);
+			// letBestPlayerWin(round);
 		}
 	}
 
