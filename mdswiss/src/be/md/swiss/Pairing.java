@@ -25,4 +25,9 @@ public interface Pairing {
 
 	int getColorScore();
 
+	public boolean isPlayed();
+
+	public boolean isDraw();
+
+	public boolean whiteWon();
 }

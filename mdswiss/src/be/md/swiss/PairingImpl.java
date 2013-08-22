@@ -21,7 +21,9 @@ public class PairingImpl implements Pairing {
 
 	public static PairingImpl createPairing(Player white, Player black) {
 		if (white.equals(black)) {
-			throw new IllegalArgumentException("White player can not be the same as black player:" + white + " " + black);
+			throw new IllegalArgumentException(
+					"White player can not be the same as black player:" + white
+							+ " " + black);
 		}
 
 		int score = colorScore(white, black);
@@ -65,10 +67,12 @@ public class PairingImpl implements Pairing {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("[" + white.getFirstname() + " " + white.getLastname());
-		builder.append(" (" + white.getRating() + " (" + white.getPoints() + ")(sb:" + white.getSonnebornBerner() + ")");
+		builder.append(" (" + white.getRating() + " (" + white.getPoints()
+				+ ")(sb:" + white.getSonnebornBerner() + ")");
 		builder.append(" - ");
 		builder.append(black.getFirstname() + " " + black.getLastname());
-		builder.append(" (" + black.getRating() + " (" + black.getPoints() + ")(sb:" + black.getSonnebornBerner() + ")]");
+		builder.append(" (" + black.getRating() + " (" + black.getPoints()
+				+ ")(sb:" + black.getSonnebornBerner() + ")]");
 		if (getResultString().length() > 0)
 			builder.append("Result:" + getResultString());
 		return builder.toString();
@@ -110,7 +114,8 @@ public class PairingImpl implements Pairing {
 	}
 
 	public boolean existsOfPlayers(Player p1, Player p2) {
-		return (white.equals(p1) || white.equals(p2)) && (black.equals(p1) || black.equals(p2));
+		return (white.equals(p1) || white.equals(p2))
+				&& (black.equals(p1) || black.equals(p2));
 	}
 
 	@Override
@@ -181,4 +186,15 @@ public class PairingImpl implements Pairing {
 		return colorScore;
 	}
 
+	public boolean isPlayed() {
+		return played;
+	}
+
+	public boolean isDraw() {
+		return draw;
+	}
+
+	public boolean whiteWon() {
+		return whiteWins;
+	}
 }

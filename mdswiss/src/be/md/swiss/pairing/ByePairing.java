@@ -74,4 +74,19 @@ public class ByePairing implements Pairing {
 		return byePlayer.getColorScore();
 	}
 
+	@Override
+	public boolean isPlayed() {
+		return true;
+	}
+
+	@Override
+	public boolean isDraw() {
+		return false;
+	}
+
+	@Override
+	public boolean whiteWon() {
+		return false;
+	}
+
 }
